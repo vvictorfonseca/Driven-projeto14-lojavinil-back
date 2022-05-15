@@ -4,6 +4,7 @@ import chalk from "chalk";
 import dotenv from "dotenv";
 
 import authRouter from "./routes/authRoutes.js"
+import productsRouter from "./routes/productsRoutes.js"
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(json());
 
 app.use(authRouter);
+app.use(productsRouter);
 
 app.listen(process.env.PORT, () => {
     console.log(chalk.bold.green("Server running on port " + process.env.PORT))

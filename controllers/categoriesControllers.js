@@ -10,4 +10,14 @@ async function getCategories(req, res) {
     }
 }
 
-export { getCategories };
+async function getAlbum(req, res) {
+    try{
+        const album = await db.collection("genero").find({}).toArray();
+        res.send(album);
+    } catch(e) {
+        console.log(e);
+        return res.status(500).send("Erro ao tentar acessar as categorias.", e);
+    }
+}
+
+export { getCategories, getAlbum };
