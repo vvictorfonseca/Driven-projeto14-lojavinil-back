@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import db from "../db.js";
 
 async function buyProducts(req, res){
@@ -15,4 +16,20 @@ async function buyProducts(req, res){
     }
 }
 
-export default buyProducts
+async function deleteCart(req,res){
+
+    const { dataId } = req.data;
+
+    console.log("aquuuu", req.data);
+
+    try{
+        const carts = db.collection("carts");
+        await carts.deleteOne({_id: new ObjectId(dataId)})
+
+        return res.sendStatus(200)
+    }catch(e){
+        return res.status(500).send(error)
+    }
+}
+
+export { buyProducts, deleteCart };
