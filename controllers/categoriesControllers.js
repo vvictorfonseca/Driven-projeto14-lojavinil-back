@@ -43,10 +43,10 @@ async function insertToCart(req, res) {
         await db.collection("carts").insertOne(
             {
                 idUsuário: user._id,
-                banda,
-                preco,
-                album,
-                url
+                banda: banda[0],
+                preco: preco[0],
+                album: album[0],
+                url: url[0]
             }
         )
     
