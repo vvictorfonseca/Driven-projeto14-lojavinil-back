@@ -53,11 +53,12 @@ async function insertToCart(req, res) {
 
 async function buyProducts(req, res) {
 
-    const { body } = req.body
+    const { cartFiltered } = req.body
+
+    console.log("body", cartFiltered)
     
     try{
-        
-        await db.collection("sales").insertMany(body);
+        await db.collection("sales").insertMany({cartFiltered});
         return res.sendStatus(201)
 
     }catch(e){
