@@ -16,6 +16,23 @@ async function buyProducts(req, res) {
     }
 }
 
+async function deleteCart(req, res){
+
+    const { _id } = req.params;
+
+    try {
+        const searchCart = await db.collection("carts").findOne({ _id: parseInt(_id) });
+        if (!searchCart) {
+            return res.status(400).send("Disco não encontrado!");
+        }
+        const deleteCart = await db.collection("carts").deleteOne({ _id: parseInt(_id) });
+        res.sendStatus(200);
+        console.log(deleteCart);
+    } catch (error) {
+    res.status(500).send(error);
+    }
+}
+
 async function deleteAllCart(req, res) {
 
     const { user } = res.locals
@@ -28,4 +45,4 @@ async function deleteAllCart(req, res) {
     }
 }
 
-export { buyProducts, deleteAllCart };
+export { buyProducts, deleteAllCart, deleteCart };
