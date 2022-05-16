@@ -4,7 +4,7 @@ async function buyProducts(req, res){
 
     const {info} = req.body
 
-    console.log("info", info);
+    console.log("info", req.body);
 
     try{
         await db.collection("sales").insertMany(info);
