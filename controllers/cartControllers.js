@@ -18,9 +18,7 @@ async function buyProducts(req, res){
 
 async function deleteCart(req,res){
 
-    const { dataId } = req.data;
-
-    console.log("aquuuu", req.data);
+    const { dataId } = req.headers;
 
     try{
         const carts = db.collection("carts");
