@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 
 import authRouter from "./routes/authRoutes.js"
 import productsRouter from "./routes/productsRoutes.js"
+import cartRouter from "./routes/cartRoutes.js"
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(json());
 
 app.use(authRouter);
 app.use(productsRouter);
+app.use(cartRouter);
 
 app.listen(process.env.PORT, () => {
     console.log(chalk.bold.green("Server running on port " + process.env.PORT))
