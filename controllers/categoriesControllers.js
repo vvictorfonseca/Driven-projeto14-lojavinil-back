@@ -51,4 +51,4 @@ async function insertToCart(req, res) {
     
 }
 
-export { getCategories, getAlbum, insertToCart, getUserCart };
+export { getCategories, getAlbum, getUserCart,insertToCart };

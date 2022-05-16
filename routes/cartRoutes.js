@@ -1,11 +1,12 @@
 import { Router } from "express";
 
-import {buyProducts, deleteCart}  from "../controllers/cartControllers.js";
+import { buyProducts, deleteAllCart, deleteCart }  from "../controllers/cartControllers.js";
 import validToken from "../middlewares/categoriesMiddlewares.js";
 
 const CartRouter = Router();
 
-CartRouter.post("/carrinho", validToken, buyProducts );
-CartRouter.delete("/carrinho/:_id", validToken, deleteCart );
+CartRouter.post("/finalizar", validToken, buyProducts);
+CartRouter.delete("/carrinho", validToken, deleteAllCart);
+CartRouter.delete("/carrinho/:_id", deleteCart);
 
 export default CartRouter
