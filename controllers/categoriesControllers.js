@@ -51,4 +51,19 @@ async function insertToCart(req, res) {
     
 }
 
-export { getCategories, getAlbum, insertToCart, getUserCart };
+async function buyProducts(req, res) {
+
+    const { body } = req.body
+    
+    try{
+        
+        await db.collection("sales").insertMany({...req.body})
+        return res.sendStatus(201)
+
+    }catch(e){
+        console.log(e);
+        return res.sendStatus(502);
+    }
+}
+
+export { getCategories, getAlbum, insertToCart, getUserCart, buyProducts };
