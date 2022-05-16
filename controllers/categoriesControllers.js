@@ -40,7 +40,7 @@ async function insertToCart(req, res) {
 
     try{
 
-        await db.collection("carts").insertOne(req.body)
+        await db.collection("carts").insertOne({...req.body, userId: user._id})
     
         return res.send({ id: user._id }).status(201);
     
