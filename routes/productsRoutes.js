@@ -1,9 +1,12 @@
 import { Router } from "express";
 
-import { getAlbum } from "../controllers/categoriesControllers.js";
+import { getAlbum, getUserCart, insertToCart } from "../controllers/categoriesControllers.js";
+import validToken from "../middlewares/categoriesMiddlewares.js";
 
 const productsRouter = Router();
 
 productsRouter.get("/descricao", getAlbum);
+productsRouter.get("/descricao", validToken, getUserCart);
+productsRouter.post("descricao", validToken, insertToCart);
 
 export default productsRouter;

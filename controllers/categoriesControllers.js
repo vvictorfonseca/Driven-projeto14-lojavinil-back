@@ -20,4 +20,41 @@ async function getAlbum(req, res) {
     }
 }
 
-export { getCategories, getAlbum };
+async function getUserCart(req, res){
+
+    try{
+        const userCart =  await db.collection("carts").find({}).toArray();
+        res.send(userCart)
+    }catch(e) {
+        console.log(e);
+        return res.status(500).send("Erro ao tentar acessar as categorias.", e);
+    }
+}
+
+async function insertToCart(req, res) {
+
+    const { user } = res.locals;
+    const { banda, preco, album, url } = req.body
+
+    try{
+
+        await db.collection("carts").isertOne(
+            {
+                idUsuário: user._id,
+                banda: banda,
+                preco: preco,
+                album: album,
+                url: url
+            }
+        )
+    
+        return res.send({ id: user._id }).send(201);
+    
+    }catch(e){
+        console.log(e);
+        return res.sendStatus(501);
+    }
+    
+}
+
+export { getCategories, getAlbum, insertToCart, getUserCart };
