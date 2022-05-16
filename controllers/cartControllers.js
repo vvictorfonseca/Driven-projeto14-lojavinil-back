@@ -18,13 +18,13 @@ async function buyProducts(req, res){
 
 async function deleteCart(req,res){
 
-    const { dataId } = req.headers;
+    const { id } = req.body;
 
-    console.log("aquiiii", dataId)
+    console.log("aquiiii", id)
 
     try{
         const carts = db.collection("carts");
-        await carts.deleteOne({_id: new ObjectId(dataId)})
+        await carts.deleteOne({_id: new ObjectId(id)})
 
         return res.sendStatus(200)
     }catch(e){
