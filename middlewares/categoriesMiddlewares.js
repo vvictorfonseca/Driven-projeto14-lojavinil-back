@@ -5,7 +5,7 @@ async function validToken(req, res, next){
     const { authorization } = req.headers;
     const token = authorization?.replace('Bearer ', '').trim();
 
-    console.log("token back", token)
+    console.log("token back", authorization)
 
     if(!token) return res.status(422).send("Token não encontrado!");
 

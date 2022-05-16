@@ -36,9 +36,11 @@ async function insertToCart(req, res) {
     const { user } = res.locals;
     const { banda, preco, album, url } = req.body
 
+    console.log("req.body", req.body);
+
     try{
 
-        await db.collection("carts").isertOne(
+        await db.collection("carts").insertOne(
             {
                 idUsuário: user._id,
                 banda: banda,
