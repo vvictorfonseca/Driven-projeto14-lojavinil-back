@@ -20,6 +20,8 @@ async function deleteCart(req,res){
 
     const { dataId } = req.headers;
 
+    console.log("aquiiii", dataId)
+
     try{
         const carts = db.collection("carts");
         await carts.deleteOne({_id: new ObjectId(dataId)})
