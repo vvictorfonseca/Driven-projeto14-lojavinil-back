@@ -58,7 +58,7 @@ async function buyProducts(req, res) {
     console.log("body", cartFiltered)
     
     try{
-        await db.collection("sales").insertMany({cartFiltered});
+        await db.collection("sales").insertMany({cartFiltered}).toArray();
         return res.sendStatus(201)
 
     }catch(e){
