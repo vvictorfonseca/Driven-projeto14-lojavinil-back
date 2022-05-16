@@ -20,10 +20,8 @@ async function deleteAllCart(req, res) {
 
     const { user } = res.locals
 
-    console.log("aquiiii", id)
-
     try {
-        const carts = db.collection("carts").deleteMany({ userId: user._id })
+        await db.collection("carts").deleteMany({ userId: user._id })
         return res.sendStatus(200)
     } catch (e) {
         return res.status(500).send(error)
