@@ -1,35 +1,33 @@
 import { ObjectId } from "mongodb";
 import db from "../db.js";
 
-async function buyProducts(req, res){
+async function buyProducts(req, res) {
 
-    const {info} = req.body
+    const { info } = req.body
 
     console.log("info", req.body);
 
-    try{
-        await db.collection("sales").insertMany([{info}]);
+    try {
+        await db.collection("sales").insertMany([{ info }]);
         return res.sendStatus(201);
-    }catch(e){
+    } catch (e) {
         console.log(e);
         res.sendStatus(504);
     }
 }
 
-/*async function deleteCart(req,res){
+async function deleteAllCart(req, res) {
 
-    const { id } = req.body;
+    const { user } = res.locals
 
     console.log("aquiiii", id)
 
-    try{
-        const carts = db.collection("carts");
-        await carts.deleteOne({_id: new ObjectId(id)})
-
+    try {
+        const carts = db.collection("carts").deleteMany({ userId: user._id })
         return res.sendStatus(200)
-    }catch(e){
+    } catch (e) {
         return res.status(500).send(error)
     }
-}*/
+}
 
-export { buyProducts };
+export { buyProducts, deleteAllCart };
