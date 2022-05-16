@@ -57,7 +57,7 @@ async function buyProducts(req, res) {
     
     try{
         
-        await db.collection("sales").insertMany({body});
+        await db.collection("sales").insertMany(body);
         return res.sendStatus(201)
 
     }catch(e){
