@@ -16,19 +16,20 @@ async function buyProducts(req, res){
     }
 }
 
-async function deleteCart(req,res){
+async function deleteCart(req, res){
 
-    const { dataId } = req.headers;
+    const { _id } = req.params;
 
-    console.log("aquiiii", dataId)
-
-    try{
-        const carts = db.collection("carts");
-        await carts.deleteOne({_id: new ObjectId(dataId)})
-
-        return res.sendStatus(200)
-    }catch(e){
-        return res.status(500).send(error)
+    try {
+		const searchCart = await db.collection("carts").findOne({ _id: parseInt(_id) });
+        if (!searchCart) {
+            return res.status(400).send("Disco não encontrado!");
+        }
+		const deleteCart = await db.collection("carts").deleteOne({ _id: parseInt(_id) });
+		res.sendStatus(200);
+        console.log(deleteCart);
+	} catch (error) {
+	  res.status(500).send(error);
     }
 }
 

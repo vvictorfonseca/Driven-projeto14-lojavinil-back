@@ -6,6 +6,6 @@ import validToken from "../middlewares/categoriesMiddlewares.js";
 const CartRouter = Router();
 
 CartRouter.post("/carrinho", validToken, buyProducts );
-CartRouter.delete("/carrinho", validToken, deleteCart );
+CartRouter.delete("/carrinho/:_id", validToken, deleteCart );
 
 export default CartRouter
