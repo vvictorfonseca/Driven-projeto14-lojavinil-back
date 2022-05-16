@@ -8,15 +8,15 @@ async function buyProducts(req, res){
     console.log("info", req.body);
 
     try{
-        await db.collection("sales").insertMany(info);
-        return res.sendStatus(201)
+        await db.collection("sales").insertMany([{info}]);
+        return res.sendStatus(201);
     }catch(e){
         console.log(e);
         res.sendStatus(504);
     }
 }
 
-async function deleteCart(req,res){
+/*async function deleteCart(req,res){
 
     const { id } = req.body;
 
@@ -30,6 +30,6 @@ async function deleteCart(req,res){
     }catch(e){
         return res.status(500).send(error)
     }
-}
+}*/
 
-export { buyProducts, deleteCart };
+export { buyProducts };
