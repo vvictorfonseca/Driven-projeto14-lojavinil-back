@@ -6,7 +6,7 @@ import validToken from "../middlewares/categoriesMiddlewares.js";
 const productsRouter = Router();
 
 productsRouter.get("/descricao", getAlbum);
-productsRouter.get("/descricao", validToken, getUserCart);
-productsRouter.post("descricao", validToken, insertToCart);
+productsRouter.get("/carrinho", validToken, getUserCart);
+productsRouter.post("/descricao", validToken, insertToCart);
 
 export default productsRouter;

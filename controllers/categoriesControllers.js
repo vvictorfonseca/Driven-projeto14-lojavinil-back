@@ -48,7 +48,7 @@ async function insertToCart(req, res) {
             }
         )
     
-        return res.send({ id: user._id }).send(201);
+        return res.send({ id: user._id }).status(201);
     
     }catch(e){
         console.log(e);
