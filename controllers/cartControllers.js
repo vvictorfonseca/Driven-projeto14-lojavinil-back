@@ -18,14 +18,15 @@ async function buyProducts(req, res) {
 
 async function deleteCart(req, res){
 
-    const { _id } = req.params;
+    const { id } = req.body;
+    console.log("id veio no back", id)
 
     try {
-        const searchCart = await db.collection("carts").findOne({ _id: parseInt(_id) });
+        const searchCart = await db.collection("carts").findOne({ _id: req.body });
         if (!searchCart) {
             return res.status(400).send("Disco não encontrado!");
         }
-        const deleteCart = await db.collection("carts").deleteOne({ _id: parseInt(_id) });
+        const deleteCart = await db.collection("carts").deleteOne({ _id: req.body });
         res.sendStatus(200);
         console.log(deleteCart);
     } catch (error) {
