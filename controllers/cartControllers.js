@@ -20,12 +20,8 @@ async function deleteCart(req, res){
 
     const { id } = req.params;
 
-    const idExist = await db.collection("carts").finOne({_id: id});
-    if(!idExist) return res.status(404).send("Id inexistente no banco!")
-
     try{
-        
-        await db.collection("carts").deleteOne({_id: id});
+        await db.collection("carts").deleteOne({_id: new ObjectId(id)});
         res.status(200).send("Produto apagado!")
     }catch (e) {
         return res.status(500).send(error)
