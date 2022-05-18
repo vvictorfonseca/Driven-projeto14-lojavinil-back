@@ -18,19 +18,17 @@ async function buyProducts(req, res) {
 
 async function deleteCart(req, res){
 
-    const { id } = req.body;
-    console.log("id veio no back", id)
+    const { id } = req.params;
 
-    try {
-        const searchCart = await db.collection("carts").findOne({ _id: req.body });
-        if (!searchCart) {
-            return res.status(400).send("Disco não encontrado!");
-        }
-        const deleteCart = await db.collection("carts").deleteOne({ _id: req.body });
-        res.sendStatus(200);
-        console.log(deleteCart);
-    } catch (error) {
-    res.status(500).send(error);
+    const idExist = await db.collection("carts").finOne({_id: id});
+    if(!idExist) return res.status(404).send("Id inexistente no banco!")
+
+    try{
+        
+        await db.collection("carts").deleteOne({_id: id});
+        res.status(200).send("Produto apagado!")
+    }catch (e) {
+        return res.status(500).send(error)
     }
 }
 

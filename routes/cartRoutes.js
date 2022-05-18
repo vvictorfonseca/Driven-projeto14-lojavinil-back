@@ -7,6 +7,6 @@ const CartRouter = Router();
 
 CartRouter.post("/finalizar", validToken, buyProducts);
 CartRouter.delete("/carrinho", validToken, deleteAllCart);
-CartRouter.delete("/carrinho/confirmar", validToken, deleteCart);
+CartRouter.delete("/carrinho/:id", validToken, deleteCart);
 
 export default CartRouter
